@@ -9,21 +9,22 @@ const main = async () => {
     "wss://polygon-mumbai.g.alchemy.com/v2/KM1Kv-cqY7LlaPsoximQwOASxTzExuR5"
   );
 
-  const date = new Date();
-  const time =
-    date.getDay() +
-    "-" +
-    date.getMonth() +
-    "-" +
-    date.getFullYear() +
-    " " +
-    date.getHours() +
-    ":" +
-    date.getMinutes();
   const contract = new ethers.Contract(contractAddress, ABI, provider);
 
   const _id = Math.random() * 100000000;
   contract.on("Liquidation", async (user, price, amountMATIC, amountDAI) => {
+    const date = new Date();
+    const time =
+      date.getDate() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      ":" +
+      date.getMinutes();
+
     const address = user;
     const sender = contractAddress;
     const info = {
