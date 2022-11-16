@@ -1,7 +1,8 @@
 const { default: axios } = require("axios");
 const { ethers } = require("ethers");
 const { ABI } = require("./abi");
-
+const express = require("express");
+const app = express();
 const main = async () => {
   const contractAddress = "0x64D1eE237c1633044b812F0a618a9171D7d2A803";
 
@@ -52,3 +53,6 @@ const main = async () => {
 main()
   .then()
   .catch((e) => console.log(e));
+
+const port = 8081;
+app.listen(port, console.log(`Listening on port ${port}...`));
