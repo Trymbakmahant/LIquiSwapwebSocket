@@ -14,17 +14,9 @@ const main = async () => {
 
   const _id = Math.random() * 100000000;
   contract.on("Liquidation", async (user, price, amountMATIC, amountDAI) => {
-    const date = new Date();
     const time =
-      date.getDate() +
-      "-" +
-      (date.getMonth() + 1) +
-      "-" +
-      date.getFullYear() +
-      " " +
-      date.getHours() +
-      ":" +
-      date.getMinutes();
+      date.toLocaleString("en-GB", { timeZone: "Europe/London" }) +
+      " (UTC + 0)";
 
     const address = user.toLowerCase();
     const sender = contractAddress;
