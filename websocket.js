@@ -1,4 +1,4 @@
-const { default: axios } = require("axios");
+const axios = require("axios");
 const { ethers } = require("ethers");
 const { ABI } = require("./abi");
 const express = require("express");
@@ -26,28 +26,29 @@ const main = async () => {
       ":" +
       date.getMinutes();
 
-    const address = user;
+    const address = user.toLowerCase();
     const sender = contractAddress;
     const info = {
       _id,
       address,
       sender,
-      price,
+      price: ethers.utils.formatEther(price.toString()),
       receiver: address,
-      amountMATIC,
-      amount: amountDAI,
+      amountMATIC: ethers.utils.formatEther(amountMATIC.toString()),
+      amount: ethers.utils.formatEther(amountDAI.toString()),
       time,
       method: "Liquidate",
       token: "DAI",
     };
+    console.log(info);
+
     const result = await axios.post(
       "https://liqui.onrender.com/api/ipfs",
       info
     );
+
     console.log(result);
-    console.log(info);
   });
-  // console.log(event);
 };
 
 main()
