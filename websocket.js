@@ -38,7 +38,7 @@ const main = async () => {
         "https://liqui.onrender.com/api/ipfs",
         info
       );
-      console.log(result);
+      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
