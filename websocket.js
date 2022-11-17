@@ -14,6 +14,7 @@ const main = async () => {
 
   const _id = Math.random() * 100000000;
   contract.on("Liquidation", async (user, price, amountMATIC, amountDAI) => {
+    const date = new Date(Date.now());
     const time =
       date.toLocaleString("en-GB", { timeZone: "Europe/London" }) +
       " (UTC + 0)";
