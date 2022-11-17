@@ -17,7 +17,6 @@ const main = async () => {
     const time =
       date.toLocaleString("en-GB", { timeZone: "Europe/London" }) +
       " (UTC + 0)";
-
     const address = user.toLowerCase();
     const sender = contractAddress;
     const info = {
@@ -33,11 +32,15 @@ const main = async () => {
       token: "DAI",
     };
     console.log(info);
-
-    const result = await axios.post(
-      "https://liqui.onrender.com/api/ipfs",
-      info
-    );
+    try {
+      const result = await axios.post(
+        "https://liqui.onrender.com/api/ipfs",
+        info
+      );
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
 
     console.log(result);
   });
